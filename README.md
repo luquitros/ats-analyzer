@@ -53,6 +53,10 @@ npm run dev
 
 Acesse: http://localhost:3000
 
+## Log do projeto
+
+Veja [`PROJECT_LOG.md`](PROJECT_LOG.md) para acompanhar mudancas feitas, melhorias futuras e ideias de evolucao.
+
 ## Deploy (Vercel)
 
 ```bash
