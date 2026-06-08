@@ -1,6 +1,6 @@
 # ATS Analyzer — CV Optimizer para LinkedIn
 
-Analisa currículos com IA aplicando regras de ATS e gera sugestões de otimização para o LinkedIn.
+Analisa currículos com IA aplicando regras de ATS, compara o CV com uma vaga completa e gera sugestões de otimização para LinkedIn e recrutadores.
 
 ## Stack
 
@@ -67,7 +67,15 @@ npx vercel deploy
 ## Como funciona
 
 1. Usuário faz upload do CV (PDF/DOCX/TXT) ou cola o texto
-2. `/api/parse-file` extrai o texto do arquivo
-3. `/api/analyze` envia o texto para o Claude com um prompt estruturado
-4. Claude retorna um JSON tipado com score, métricas, keywords, recomendações e sugestões LinkedIn
-5. Os componentes renderizam os resultados de forma organizada
+2. Usuário informa a vaga alvo e, opcionalmente, cola a descrição completa da vaga
+3. `/api/parse-file` extrai o texto do arquivo
+4. `/api/analyze` envia o texto para o Claude com um prompt estruturado
+5. Claude retorna um JSON tipado com score, métricas, keywords, match com vaga, leitura de recrutador, plano de correção e sugestões LinkedIn
+6. Os componentes renderizam os resultados de forma organizada
+
+## Diferenciais
+
+- **CV x vaga completa**: separa requisitos bem evidenciados, fracos e ausentes.
+- **Leitura do recrutador em 6 segundos**: simula a primeira impressão humana do CV.
+- **Plano de correção priorizado**: organiza ações em agora, alto impacto e ajuste fino.
+- **LinkedIn + ATS**: combina otimização para robôs de triagem e perfil profissional público.

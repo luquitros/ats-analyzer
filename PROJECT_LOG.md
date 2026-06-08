@@ -22,6 +22,10 @@ Registro vivo de mudancas, melhorias futuras e ideias para evoluir o ATS Analyze
 - Melhorada validacao de arquivos PDF, DOCX e TXT.
 - Adicionado erro claro quando `ANTHROPIC_API_KEY` nao esta configurada.
 - Reforcado prompt para reduzir risco de instrucoes maliciosas dentro do CV ou vaga.
+- Adicionado campo para descricao completa da vaga.
+- Adicionado painel `CV x vaga completa`.
+- Adicionado painel de leitura do recrutador em 6 segundos.
+- Adicionado plano de correcao priorizado.
 
 ## Melhorias Prioritarias
 
@@ -31,14 +35,12 @@ Registro vivo de mudancas, melhorias futuras e ideias para evoluir o ATS Analyze
 - Melhorar mensagens de erro na interface para diferenciar erro de chave, erro de arquivo e erro da IA.
 - Adicionar estado visual de arquivo carregado com tamanho e botao para limpar.
 - Adicionar limite visual de caracteres no textarea do curriculo.
-- Permitir colar descricao completa da vaga, nao apenas nome da vaga.
 - Salvar historico local das ultimas analises no navegador.
 - Adicionar exportacao do resultado em PDF ou Markdown.
 - Criar pagina de configuracoes para modelo, idioma e nivel de detalhamento.
 
 ## Ideias De Produto
 
-- Comparar CV contra uma vaga completa e mostrar match percentual por requisito.
 - Gerar versao otimizada do resumo profissional.
 - Gerar bullets de experiencia usando formula impacto + acao + metrica.
 - Sugerir palavras-chave por area, senioridade e tecnologia.

@@ -8,6 +8,9 @@ import { MetricsGrid } from '@/components/MetricsGrid'
 import { KeywordsPanel } from '@/components/KeywordsPanel'
 import { DiagnosticsPanel } from '@/components/DiagnosticsPanel'
 import { LinkedInPanel } from '@/components/LinkedInPanel'
+import { JobMatchPanel } from '@/components/JobMatchPanel'
+import { RecruiterScanPanel } from '@/components/RecruiterScanPanel'
+import { ActionPlanPanel } from '@/components/ActionPlanPanel'
 import type { ATSResult, AnalyzeRequest } from '@/types'
 
 type Nivel = AnalyzeRequest['nivel']
@@ -22,6 +25,7 @@ const LOADING_MESSAGES = [
 export default function Home() {
   const [cvText, setCvText] = useState('')
   const [vaga, setVaga] = useState('')
+  const [descricaoVaga, setDescricaoVaga] = useState('')
   const [nivel, setNivel] = useState<Nivel>('pleno')
   const [isLoading, setIsLoading] = useState(false)
   const [loadingMsg, setLoadingMsg] = useState(LOADING_MESSAGES[0])
@@ -48,7 +52,7 @@ export default function Home() {
       const res = await fetch('/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cvText, vaga, nivel }),
+        body: JSON.stringify({ cvText, vaga, descricaoVaga, nivel }),
       })
 
       const data = await res.json()
@@ -72,6 +76,7 @@ export default function Home() {
     setError(null)
     setCvText('')
     setVaga('')
+    setDescricaoVaga('')
     setNivel('pleno')
   }
 
@@ -134,9 +139,28 @@ export default function Home() {
                   <option value="junior">Júnior</option>
                   <option value="pleno">Pleno</option>
                   <option value="senior">Sênior</option>
-                  <option value="liderança">Liderança</option>
+                  <option value="lideranca">Liderança</option>
                 </select>
               </div>
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-1.5 gap-3">
+                <label className="block text-xs font-medium text-zinc-500">
+                  Descrição completa da vaga{' '}
+                  <span className="font-normal text-zinc-400">(opcional)</span>
+                </label>
+                <span className="text-xs text-zinc-400 tabular-nums">
+                  {descricaoVaga.length}/12000
+                </span>
+              </div>
+              <textarea
+                value={descricaoVaga}
+                maxLength={12000}
+                onChange={(e) => setDescricaoVaga(e.target.value)}
+                placeholder="Cole aqui os requisitos, responsabilidades e diferenciais da vaga para comparar o CV com mais precisão."
+                className="w-full min-h-[120px] text-sm border border-zinc-200 rounded-xl px-3.5 py-3 resize-y text-zinc-800 placeholder:text-zinc-300 bg-white focus:outline-none focus:ring-2 focus:ring-zinc-300 focus:border-transparent transition"
+              />
             </div>
 
             {error && (
@@ -169,6 +193,9 @@ export default function Home() {
           <div className="space-y-4">
             <ScoreCard result={result} vaga={vaga} />
             <MetricsGrid metricas={result.metricas} />
+            <JobMatchPanel match={result.vaga_match} />
+            <RecruiterScanPanel scan={result.leitura_recrutador} />
+            <ActionPlanPanel items={result.plano_correcao} />
             <KeywordsPanel
               encontradas={result.palavras_chave_encontradas}
               ausentes={result.palavras_chave_ausentes}
